@@ -15,7 +15,7 @@ const {
 const getCurrentUser = (req, res, next) => {
   User.findById(req.user._id)
     .orFail(() => {
-      throw new NotFound('Пользователь по указанному _id не найден');
+      throw new NotFound('Пользователь не найден');
     })
     .then((user) => res.send({ email: user.email, name: user.name }))
     .catch(next);
@@ -32,7 +32,7 @@ const updateUser = (req, res, next) => {
     },
   )
     .orFail(() => {
-      throw new NotFound('Пользователь по указанному _id не найден');
+      throw new NotFound('Пользователь не найден');
     })
     .then((user) => res.send(user))
     .catch((err) => {
